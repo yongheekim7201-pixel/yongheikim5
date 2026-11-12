@@ -36,7 +36,7 @@ st.dataframe(df.head())
 # ----------------------------------
 # TODO: Prophet 모델을 생성하고, 11년 주기 커스텀 seasonality를 추가한 후 학습하세요.
 model = Prophet(yearly_seasonality=False)
-model.add_seasonality(name='sunspot_cycle', period=11, fourier_order=5)
+model.add_seasonality(name='sunspot_cycle', period=11, fourier_order=10)
 model.fit(df)
 
 # ----------------------------------
@@ -94,7 +94,7 @@ merged['residual'] = merged['y'] - merged['yhat']
 # TODO: residual 시계열을 시각화하세요.
 fig4, ax2 = plt.subplots(figsize=(14, 4))
 
-ax2.plot(merged["ds"], merged["residual"], color='purple', label='Residuals')
+ax2.plot(merged["ds"], merged["residual"], marker='o', markersize=4, color='purple', label='Residuals')
 ax2.axhline(0, color='black', linestyle='--', linewidth=1.5)
 ax2.set_title("Residuals Over Time")
 ax2.set_xlabel("Year")
